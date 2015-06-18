@@ -1,4 +1,5 @@
 from django import forms
+from django.forms.widgets import CheckboxInput
 from .models import Join
 
 class EmailForm(forms.Form):
@@ -7,5 +8,5 @@ class EmailForm(forms.Form):
     
 class JoinForm(forms.ModelForm):
     class Meta:
-        exclude = []
+        exclude = ['ip_address', 'ref_id']
         model = Join

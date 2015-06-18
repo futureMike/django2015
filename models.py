@@ -7,6 +7,7 @@ from django.forms.widgets import CheckboxInput
 
 class Join(models.Model):
     email = models.EmailField()
+    ref_id = models.CharField(max_length=128, default='ABC', unique=True)
     timestamp = models.DateTimeField(auto_now_add = True, auto_now=False)
     updated = models.DateTimeField(auto_now_add=False, auto_now=True)
     ip_address = models.CharField(max_length=128, default='ABC')
@@ -28,3 +29,6 @@ class Join(models.Model):
     
     def __unicode__(self):
         return smart_unicode(self.email)
+    
+    class Meta:
+        unique_together = ("email", "ref_id")
